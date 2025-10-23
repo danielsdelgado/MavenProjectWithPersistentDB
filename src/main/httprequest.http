@@ -1,0 +1,25 @@
+###✅ 1. Crear alumno
+POST http://localhost:8080/alumnos
+Content-Type: application/json
+
+{
+  "nombre": "Ana",
+  "edad": 21
+}
+
+###✅ 2. Obtener todos los alumnos
+GET http://localhost:8080/alumnos
+
+###✅ 3. (Futuro) Actualizar alumno (si implementas PUT)
+Nota: No lo tienes implementado aún, pero si lo agregas:
+###PUT http://localhost:8080/alumnos/1
+Content-Type: application/json
+
+{
+  "nombre": "Ana María",
+  "edad": 22
+}
+
+✅ 4. (Futuro) Eliminar alumno (si agregas @DeleteMapping)
+Nota: Esto no está en tu AlumnoController, pero si lo agregas:
+DELETE http://localhost:8080/alumnos/1
