@@ -31,9 +31,7 @@ src/
      └── resources/
          └── application.properties
 pom.xml
-scripts/
- └── script.js                 # Funciones JS para interactuar con la API
-```
+httprequest.http -> Endpoints para interactuar con la API
 
 ## Endpoints Disponibles
 
@@ -151,9 +149,7 @@ src/
      └── resources/
          └── application.properties
 pom.xml
-scripts/
- └── script.js                 # JS functions to interact with the API
-```
+httprequest.http -> Endpoints to interact with the API
 
 ## Available Endpoints
 
