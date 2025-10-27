@@ -1,7 +1,7 @@
 # 📘 Proyecto: Gestión de Alumnos y Cursos con PostgreSQL (Spring Boot + Maven)
 
 <details>
-<summary>🇪🇸 Español (ESP)</summary>
+<summary>ESPAÑOL 🇪🇸</summary>
 
 ## 🧩 Descripción
 
@@ -119,8 +119,7 @@ server.port=8081
 ---
 
 <details>
-<summary>🇬🇧 English (ENG)</summary>
-
+<summary>ENGLISH 🇪🇸</summary>
 ## 🧩 Description
 
 This project is a Java application built with **Maven** using **PostgreSQL** to store information about **students** and **courses**. It provides full **CRUD operations** through a **REST API** and views to query active courses.
