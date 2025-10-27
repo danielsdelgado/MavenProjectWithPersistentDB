@@ -1,16 +1,16 @@
-# MavenProjectWithPersistentDB / Proyecto Maven con Base de Datos Persistente
+# 📘 MavenProjectWithPersistentDB / Proyecto Maven con Base de Datos Persistente
 
-## Descripción / Description
+<details>
+<summary>ESP 🇪🇸</summary>
 
-**ES:**
-Este proyecto es una aplicación Java construida con Maven que utiliza una base de datos H2 en memoria para almacenar información sobre cursos y alumnos. Permite operaciones CRUD (Crear, Leer, Actualizar, Eliminar) mediante una API REST.
+## 🧩 Descripción
 
-**EN:**
-This project is a Java application built with Maven that uses an H2 in-memory database to store information about courses and students. It provides CRUD (Create, Read, Update, Delete) operations via a RESTful API.
+Este proyecto es una **aplicación Java construida con Maven** que utiliza **una base de datos H2 en memoria** para almacenar información sobre **cursos y alumnos**.
+Permite realizar **operaciones CRUD** (Crear, Leer, Actualizar, Eliminar) mediante una **API REST**.
 
 ---
 
-## Tecnologías / Technologies
+## ⚙️ Tecnologías utilizadas
 
 * **Java 17**
 * **Spring Boot**
@@ -20,49 +20,51 @@ This project is a Java application built with Maven that uses an H2 in-memory da
 
 ---
 
-## Estructura del Proyecto / Project Structure
+## 🧩 Estructura del proyecto
 
-```plaintext
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   ├── com/example/demoh2
-│   │   │   │   ├── controller
-│   │   │   │   ├── domain
-│   │   │   │   ├── dto
-│   │   │   │   ├── mapper
-│   │   │   │   └── service
-│   │   └── resources
+```
+MavenProjectWithPersistentDB/
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/demoh2/
+│   │   │   ├── controller/
+│   │   │   ├── domain/
+│   │   │   ├── dto/
+│   │   │   ├── mapper/
+│   │   │   └── service/
+│   │   └── resources/
 │   │       └── application.properties
 ├── pom.xml
-└── scripts
+└── scripts/
     └── script.js
 ```
 
 ---
 
-## Endpoints Disponibles / Available Endpoints
+## 🌐 Endpoints disponibles
 
-### Cursos / Courses
+### 👩‍🏫 Cursos
 
-* `GET /api/cursos` → Listar todos los cursos / List all courses
-* `POST /api/cursos` → Crear un curso / Create a course
-* `PUT /api/cursos/{id}` → Actualizar curso / Update a course
-* `DELETE /api/cursos/{id}` → Eliminar curso / Delete a course
+| Método | Endpoint           | Descripción             |
+| ------ | ------------------ | ----------------------- |
+| GET    | `/api/cursos`      | Listar todos los cursos |
+| POST   | `/api/cursos`      | Crear un curso          |
+| PUT    | `/api/cursos/{id}` | Actualizar un curso     |
+| DELETE | `/api/cursos/{id}` | Eliminar un curso       |
 
-### Alumnos / Students
+### 👨‍🎓 Alumnos
 
-* `GET /api/alumnos` → Listar todos los alumnos / List all students
-* `POST /api/alumnos` → Crear un alumno / Create a student
-* `GET /api/alumnos/{id}` → Obtener alumno por ID / Get a student by ID
-* `PUT /api/alumnos/{id}` → Actualizar alumno / Update a student
-* `DELETE /api/alumnos/{id}` → Eliminar alumno / Delete a student
+| Método | Endpoint            | Descripción              |
+| ------ | ------------------- | ------------------------ |
+| GET    | `/api/alumnos`      | Listar todos los alumnos |
+| POST   | `/api/alumnos`      | Crear un alumno          |
+| GET    | `/api/alumnos/{id}` | Obtener un alumno por ID |
+| PUT    | `/api/alumnos/{id}` | Actualizar un alumno     |
+| DELETE | `/api/alumnos/{id}` | Eliminar un alumno       |
 
 ---
 
-## Configuración / Configuration
-
-### application.properties
+## 🧰 Configuración (`application.properties`)
 
 ```properties
 spring.datasource.url=jdbc:h2:mem:testdb
@@ -74,54 +76,138 @@ server.port=8081
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
 spring.jpa.show-sql=true
-```
 
-### Seguridad / Security
-
-```properties
 spring.security.user.name=admin
 spring.security.user.password=admin
 ```
 
+**Consola H2:** [http://localhost:8081/h2-console](http://localhost:8081/h2-console)
+JDBC URL: `jdbc:h2:mem:testdb`
+Usuario: `sa`
+Contraseña: (vacío)
+
 ---
 
-## Scripts de prueba / Test Scripts
+## 📝 Scripts de prueba
 
-* `script.js` → Funciones para interactuar con la API desde el frontend, incluyendo creación, actualización, eliminación y lectura de cursos y alumnos.
+* `scripts/script.js` → Funciones para interactuar con la API desde el frontend: crear, actualizar, eliminar y leer cursos y alumnos.
 
 ---
 
-## Ejecutar el proyecto / Running the Project
-
-1. Clonar el repositorio / Clone the repository:
+## ▶️ Ejecutar el proyecto
 
 ```bash
 git clone https://github.com/danielsdelgado/MavenProjectWithPersistentDB.git
 cd MavenProjectWithPersistentDB
-```
-
-2. Ejecutar la aplicación / Run the application:
-
-```bash
 ./mvnw spring-boot:run
 ```
 
-3. Acceder a la consola H2 / Access the H2 console:
+Abrir en el navegador: [http://localhost:8081](http://localhost:8081)
 
-[http://localhost:8081/h2-console](http://localhost:8081/h2-console)
+</details>
 
-* JDBC URL: `jdbc:h2:mem:testdb`
-* Usuario / User: `sa`
-* Contraseña / Password: (vacío / blank)
+<details>
+<summary>ENG 🇬🇧</summary>
 
----
+## 🧩 Description
 
-## Contribuciones / Contributions
-
-Contribuciones son bienvenidas. Por favor abre un **issue** o envía un **pull request** para mejoras o correcciones.
+This project is a **Java application built with Maven** that uses **an H2 in-memory database** to store information about **courses and students**.
+It provides **CRUD operations** (Create, Read, Update, Delete) via a **RESTful API**.
 
 ---
 
-Si quieres, puedo hacer también una **versión visual con tablas de endpoints y autenticación**, más estilo “documentación de API profesional” dentro del README, para que se vea más limpio y fácil de leer.
+## ⚙️ Technologies Used
 
-¿Quieres que haga eso?
+* **Java 17**
+* **Spring Boot**
+* **H2 Database** (in-memory)
+* **Maven**
+* **Jakarta Validation**
+
+---
+
+## 🧩 Project Structure
+
+```
+MavenProjectWithPersistentDB/
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/demoh2/
+│   │   │   ├── controller/
+│   │   │   ├── domain/
+│   │   │   ├── dto/
+│   │   │   ├── mapper/
+│   │   │   └── service/
+│   │   └── resources/
+│   │       └── application.properties
+├── pom.xml
+└── scripts/
+    └── script.js
+```
+
+---
+
+## 🌐 Available Endpoints
+
+### 👩‍🏫 Courses
+
+| Method | Endpoint           | Description      |
+| ------ | ------------------ | ---------------- |
+| GET    | `/api/cursos`      | List all courses |
+| POST   | `/api/cursos`      | Create a course  |
+| PUT    | `/api/cursos/{id}` | Update a course  |
+| DELETE | `/api/cursos/{id}` | Delete a course  |
+
+### 👨‍🎓 Students
+
+| Method | Endpoint            | Description         |
+| ------ | ------------------- | ------------------- |
+| GET    | `/api/alumnos`      | List all students   |
+| POST   | `/api/alumnos`      | Create a student    |
+| GET    | `/api/alumnos/{id}` | Get a student by ID |
+| PUT    | `/api/alumnos/{id}` | Update a student    |
+| DELETE | `/api/alumnos/{id}` | Delete a student    |
+
+---
+
+## 🧰 Configuration (`application.properties`)
+
+```properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+server.port=8081
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.jpa.show-sql=true
+
+spring.security.user.name=admin
+spring.security.user.password=admin
+```
+
+**H2 Console:** [http://localhost:8081/h2-console](http://localhost:8081/h2-console)
+JDBC URL: `jdbc:h2:mem:testdb`
+User: `sa`
+Password: (blank)
+
+---
+
+## 📝 Test Scripts
+
+* `scripts/script.js` → Functions to interact with the API from the frontend: create, update, delete, and read courses and students.
+
+---
+
+## ▶️ Running the Project
+
+```bash
+git clone https://github.com/danielsdelgado/MavenProjectWithPersistentDB.git
+cd MavenProjectWithPersistentDB
+./mvnw spring-boot:run
+```
+
+Open in browser: [http://localhost:8081](http://localhost:8081)
+
+</details> 
