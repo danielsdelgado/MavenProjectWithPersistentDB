@@ -119,7 +119,7 @@ server.port=8081
 ---
 
 <details>
-<summary>ENGLISH 🇪🇸</summary>
+<summary>ENGLISH 🇬🇧</summary>
 ## 🧩 Description
 
 This project is a Java application built with **Maven** using **PostgreSQL** to store information about **students** and **courses**. It provides full **CRUD operations** through a **REST API** and views to query active courses.
