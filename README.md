@@ -1,7 +1,7 @@
 # 📘 MavenProjectWithPersistentDB / Proyecto Maven con Base de Datos Persistente
 
 <details>
-<summary>ESP 🇪🇸</summary>
+<summary>ESPAÑOL 🇪🇸</summary>
 
 ## 🧩 Descripción
 
@@ -107,7 +107,7 @@ Abrir en el navegador: [http://localhost:8081](http://localhost:8081)
 </details>
 
 <details>
-<summary>ENG 🇬🇧</summary>
+<summary>ENGLISH 🇬🇧</summary>
 
 ## 🧩 Description
 
