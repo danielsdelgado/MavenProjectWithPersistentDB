@@ -1,198 +1,239 @@
-# 📘 MavenProjectWithPersistentDB / Proyecto Maven con Base de Datos Persistente
+# 📘 Proyecto: Gestión de Alumnos y Cursos con PostgreSQL (Spring Boot + Maven)
 
 <details>
-<summary>ESPAÑOL 🇪🇸</summary>
+<summary>🇪🇸 Español (ESP)</summary>
 
 ## 🧩 Descripción
 
-Este proyecto es una **aplicación Java construida con Maven** que utiliza **una base de datos sql PostgreSQL** para almacenar información sobre **cursos y alumnos**.
-Permite realizar **operaciones CRUD** (Crear, Leer, Actualizar, Eliminar) mediante una **API REST**.
-
----
+Este proyecto es una aplicación Java construida con **Maven** que utiliza una base de datos **PostgreSQL** para almacenar información sobre **alumnos** y **cursos**. Permite operaciones **CRUD completas** mediante una **API REST** y vistas para consultar cursos activos.
 
 ## ⚙️ Tecnologías utilizadas
 
-* **Java 17**
-* **Spring Boot**
-* **Database PosgreSQL** (in-memory)
-* **Maven**
-* **Jakarta Validation**
+* Java 17+
+* Spring Boot
+* Spring Web (REST API)
+* Spring Data JPA (PostgreSQL)
+* PostgreSQL
+* Maven
+* Jakarta Validation
+* Docker / pgAdmin4 (opcional)
 
----
-
-## 🧩 Estructura del proyecto
+## Estructura del Proyecto
 
 ```
-MavenProjectWithPersistentDB/
-├── src/
-│   ├── main/
-│   │   ├── java/com/example/demoh2/
-│   │   │   ├── controller/
-│   │   │   ├── domain/
-│   │   │   ├── dto/
-│   │   │   ├── mapper/
-│   │   │   └── service/
-│   │   └── resources/
-│   │       └── application.properties
-├── pom.xml
-└── scripts/
-    └── script.js
+src/
+ └── main/
+     ├── java/com/example/proyectomavenpersistentdatabase/
+     │   ├── controller/        # Controladores REST (AlumnoController, CursoActivoViewController)
+     │   ├── domain/            # Entidades (Alumno, CursoActivoView)
+     │   ├── repository/        # Repositorios JPA
+     │   └── service/           # Servicios de negocio
+     └── resources/
+         └── application.properties
+pom.xml
+scripts/
+ └── script.js                 # Funciones JS para interactuar con la API
 ```
 
----
+## Endpoints Disponibles
 
-## 🌐 Endpoints disponibles
+### Alumnos
 
-### 👩‍🏫 Cursos
+| Método | Endpoint        | Descripción             |
+| ------ | --------------- | ----------------------- |
+| GET    | `/alumnos`      | Lista todos los alumnos |
+| POST   | `/alumnos`      | Crear un alumno         |
+| GET    | `/alumnos/{id}` | Obtener alumno por ID   |
+| PUT    | `/alumnos/{id}` | Actualizar alumno       |
+| DELETE | `/alumnos/{id}` | Eliminar alumno         |
 
-| Método | Endpoint           | Descripción             |
-| ------ | ------------------ | ----------------------- |
-| GET    | `/api/cursos`      | Listar todos los cursos |
-| POST   | `/api/cursos`      | Crear un curso          |
-| PUT    | `/api/cursos/{id}` | Actualizar un curso     |
-| DELETE | `/api/cursos/{id}` | Eliminar un curso       |
+### Cursos
 
-### 👨‍🎓 Alumnos
+| Método | Endpoint       | Descripción            |
+| ------ | -------------- | ---------------------- |
+| GET    | `/cursos`      | Lista todos los cursos |
+| POST   | `/cursos`      | Crear un curso         |
+| GET    | `/cursos/{id}` | Obtener curso por ID   |
+| PUT    | `/cursos/{id}` | Actualizar curso       |
+| DELETE | `/cursos/{id}` | Eliminar curso         |
 
-| Método | Endpoint            | Descripción              |
-| ------ | ------------------- | ------------------------ |
-| GET    | `/api/alumnos`      | Listar todos los alumnos |
-| POST   | `/api/alumnos`      | Crear un alumno          |
-| GET    | `/api/alumnos/{id}` | Obtener un alumno por ID |
-| PUT    | `/api/alumnos/{id}` | Actualizar un alumno     |
-| DELETE | `/api/alumnos/{id}` | Eliminar un alumno       |
+### Cursos activos
 
----
+| Método | Endpoint              | Descripción                   |
+| ------ | --------------------- | ----------------------------- |
+| GET    | `/api/cursos/activos` | Lista solo los cursos activos |
 
-## 🧰 Configuración (`application.properties`)
+## Base de Datos
+
+### Tablas
+
+```sql
+CREATE TABLE alumnos (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100),
+  edad INT
+);
+
+CREATE TABLE cursos (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  descripcion TEXT,
+  fecha_inicio DATE NOT NULL,
+  fecha_fin DATE NOT NULL,
+  activo BOOLEAN DEFAULT true
+);
+```
+
+### Vista de cursos activos
+
+```sql
+CREATE VIEW vw_cursos_activos AS
+SELECT * FROM cursos
+WHERE activo = true;
+```
+
+## Configuración (`application.properties`)
 
 ```properties
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=
-spring.jpa.hibernate.ddl-auto=update
-server.port=8081
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2-console
+spring.application.name=proyectomavenpersistentdatabase
+spring.datasource.url=jdbc:postgresql://localhost:5432/escuela
+spring.datasource.username=admin
+spring.datasource.password=admin123
+spring.jpa.hibernate.ddl-auto=none
 spring.jpa.show-sql=true
-
-spring.security.user.name=admin
-spring.security.user.password=admin
-
-## 📝 Scripts de prueba
-
-* `scripts/script.js` → Funciones para interactuar con la API desde el frontend: crear, actualizar, eliminar y leer cursos y alumnos.
-
----
-
-## ▶️ Ejecutar el proyecto
-
-```bash
-git clone https://github.com/danielsdelgado/MavenProjectWithPersistentDB.git
-cd MavenProjectWithPersistentDB
-./mvnw spring-boot:run
+server.port=8081
 ```
 
-Abrir en el navegador: [http://localhost:8081](http://localhost:8081)
+## Ejecutar proyecto
+
+1. Configurar base de datos con Docker: `docker-compose up -d`
+2. Conectarse desde pgAdmin4 (Host: postgres-db, Puerto: 5432, Usuario: admin, Contraseña: admin123, DB: escuela)
+3. Crear tablas `alumnos` y `cursos`
+4. Ejecutar aplicación Spring Boot: `./mvnw spring-boot:run`
+5. Base URL de la API: `http://localhost:8081`
+
+## Scripts de prueba
+
+`script.js` contiene funciones para interactuar con la API desde el frontend (CRUD alumnos y cursos, y consulta de cursos activos).
 
 </details>
 
+---
+
 <details>
-<summary>ENGLISH 🇬🇧</summary>
+<summary>🇬🇧 English (ENG)</summary>
 
 ## 🧩 Description
 
-This project is a **Java application built with Maven** that uses **an PosgreSQL database** to store information about **courses and students**.
-It provides **CRUD operations** (Create, Read, Update, Delete) via a **RESTful API**.
+This project is a Java application built with **Maven** using **PostgreSQL** to store information about **students** and **courses**. It provides full **CRUD operations** through a **REST API** and views to query active courses.
 
----
+## ⚙️ Technologies
 
-## ⚙️ Technologies Used
+* Java 17+
+* Spring Boot
+* Spring Web (REST API)
+* Spring Data JPA (PostgreSQL)
+* PostgreSQL
+* Maven
+* Jakarta Validation
+* Docker / pgAdmin4 (optional)
 
-* **Java 17**
-* **Spring Boot**
-* **Database PostgreSQL**
-* **Maven**
-* **Jakarta Validation**
-
----
-
-## 🧩 Project Structure
+## Project Structure
 
 ```
-MavenProjectWithPersistentDB/
-├── src/
-│   ├── main/
-│   │   ├── java/com/example/demoh2/
-│   │   │   ├── controller/
-│   │   │   ├── domain/
-│   │   │   ├── dto/
-│   │   │   ├── mapper/
-│   │   │   └── service/
-│   │   └── resources/
-│   │       └── application.properties
-├── pom.xml
-└── scripts/
-    └── script.js
+src/
+ └── main/
+     ├── java/com/example/proyectomavenpersistentdatabase/
+     │   ├── controller/        # REST Controllers (AlumnoController, CursoActivoViewController)
+     │   ├── domain/            # Entities (Alumno, CursoActivoView)
+     │   ├── repository/        # JPA Repositories
+     │   └── service/           # Business services
+     └── resources/
+         └── application.properties
+pom.xml
+scripts/
+ └── script.js                 # JS functions to interact with the API
 ```
 
----
+## Available Endpoints
 
-## 🌐 Available Endpoints
+### Students
 
-### 👩‍🏫 Courses
+| Method | Endpoint        | Description       |
+| ------ | --------------- | ----------------- |
+| GET    | `/alumnos`      | List all students |
+| POST   | `/alumnos`      | Create a student  |
+| GET    | `/alumnos/{id}` | Get student by ID |
+| PUT    | `/alumnos/{id}` | Update student    |
+| DELETE | `/alumnos/{id}` | Delete student    |
 
-| Method | Endpoint           | Description      |
-| ------ | ------------------ | ---------------- |
-| GET    | `/api/cursos`      | List all courses |
-| POST   | `/api/cursos`      | Create a course  |
-| PUT    | `/api/cursos/{id}` | Update a course  |
-| DELETE | `/api/cursos/{id}` | Delete a course  |
+### Courses
 
-### 👨‍🎓 Students
+| Method | Endpoint       | Description      |
+| ------ | -------------- | ---------------- |
+| GET    | `/cursos`      | List all courses |
+| POST   | `/cursos`      | Create a course  |
+| GET    | `/cursos/{id}` | Get course by ID |
+| PUT    | `/cursos/{id}` | Update course    |
+| DELETE | `/cursos/{id}` | Delete course    |
 
-| Method | Endpoint            | Description         |
-| ------ | ------------------- | ------------------- |
-| GET    | `/api/alumnos`      | List all students   |
-| POST   | `/api/alumnos`      | Create a student    |
-| GET    | `/api/alumnos/{id}` | Get a student by ID |
-| PUT    | `/api/alumnos/{id}` | Update a student    |
-| DELETE | `/api/alumnos/{id}` | Delete a student    |
+### Active courses
 
----
+| Method | Endpoint              | Description              |
+| ------ | --------------------- | ------------------------ |
+| GET    | `/api/cursos/activos` | List only active courses |
 
-## 🧰 Configuration (`application.properties`)
+## Database
+
+### Tables
+
+```sql
+CREATE TABLE alumnos (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100),
+  edad INT
+);
+
+CREATE TABLE cursos (
+  id SERIAL PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  descripcion TEXT,
+  fecha_inicio DATE NOT NULL,
+  fecha_fin DATE NOT NULL,
+  activo BOOLEAN DEFAULT true
+);
+```
+
+### Active courses view
+
+```sql
+CREATE VIEW vw_cursos_activos AS
+SELECT * FROM cursos
+WHERE activo = true;
+```
+
+## Configuration (`application.properties`)
 
 ```properties
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=
-spring.jpa.hibernate.ddl-auto=update
-server.port=8081
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2-console
+spring.application.name=proyectomavenpersistentdatabase
+spring.datasource.url=jdbc:postgresql://localhost:5432/escuela
+spring.datasource.username=admin
+spring.datasource.password=admin123
+spring.jpa.hibernate.ddl-auto=none
 spring.jpa.show-sql=true
-
-spring.security.user.name=admin
-spring.security.user.password=admin
-
-
-## 📝 Test Scripts
-
-* `scripts/script.js` → Functions to interact with the API from the frontend: create, update, delete, and read courses and students.
-
----
-
-## ▶️ Running the Project
-
-```bash
-git clone https://github.com/danielsdelgado/MavenProjectWithPersistentDB.git
-cd MavenProjectWithPersistentDB
-./mvnw spring-boot:run
+server.port=8081
 ```
 
-Open in browser: [http://localhost:8081](http://localhost:8081)
+## Running the Project
 
-</details> 
+1. Set up database with Docker: `docker-compose up -d`
+2. Connect with pgAdmin4 (Host: postgres-db, Port: 5432, User: admin, Password: admin123, DB: escuela)
+3. Create `alumnos` and `cursos` tables
+4. Run Spring Boot application: `./mvnw spring-boot:run`
+5. API Base URL: `http://localhost:8081`
+
+## Test Scripts
+
+`script.js` contains functions to interact with the API from the frontend (CRUD for students and courses, and querying active courses).
+
+</details>
