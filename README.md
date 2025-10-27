@@ -5,7 +5,7 @@
 
 ## 🧩 Descripción
 
-Este proyecto es una **aplicación Java construida con Maven** que utiliza **una base de datos H2 en memoria** para almacenar información sobre **cursos y alumnos**.
+Este proyecto es una **aplicación Java construida con Maven** que utiliza **una base de datos sql PostgreSQL** para almacenar información sobre **cursos y alumnos**.
 Permite realizar **operaciones CRUD** (Crear, Leer, Actualizar, Eliminar) mediante una **API REST**.
 
 ---
@@ -14,7 +14,7 @@ Permite realizar **operaciones CRUD** (Crear, Leer, Actualizar, Eliminar) median
 
 * **Java 17**
 * **Spring Boot**
-* **H2 Database** (in-memory)
+* **Database PosgreSQL** (in-memory)
 * **Maven**
 * **Jakarta Validation**
 
@@ -79,14 +79,6 @@ spring.jpa.show-sql=true
 
 spring.security.user.name=admin
 spring.security.user.password=admin
-```
-
-**Consola H2:** [http://localhost:8081/h2-console](http://localhost:8081/h2-console)
-JDBC URL: `jdbc:h2:mem:testdb`
-Usuario: `sa`
-Contraseña: (vacío)
-
----
 
 ## 📝 Scripts de prueba
 
@@ -111,7 +103,7 @@ Abrir en el navegador: [http://localhost:8081](http://localhost:8081)
 
 ## 🧩 Description
 
-This project is a **Java application built with Maven** that uses **an H2 in-memory database** to store information about **courses and students**.
+This project is a **Java application built with Maven** that uses **an PosgreSQL database** to store information about **courses and students**.
 It provides **CRUD operations** (Create, Read, Update, Delete) via a **RESTful API**.
 
 ---
@@ -120,7 +112,7 @@ It provides **CRUD operations** (Create, Read, Update, Delete) via a **RESTful A
 
 * **Java 17**
 * **Spring Boot**
-* **H2 Database** (in-memory)
+* **Database PostgreSQL**
 * **Maven**
 * **Jakarta Validation**
 
@@ -185,14 +177,7 @@ spring.jpa.show-sql=true
 
 spring.security.user.name=admin
 spring.security.user.password=admin
-```
 
-**H2 Console:** [http://localhost:8081/h2-console](http://localhost:8081/h2-console)
-JDBC URL: `jdbc:h2:mem:testdb`
-User: `sa`
-Password: (blank)
-
----
 
 ## 📝 Test Scripts
 
