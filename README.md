@@ -1,5 +1,5 @@
 # 📘 Proyecto: Gestión de Alumnos y Cursos con PostgreSQL (Spring Boot + Maven)
-
+---
 <details>
 <summary>ESPAÑOL 🇪🇸</summary>
 
@@ -115,8 +115,6 @@ server.port=8081
 `script.js` contiene funciones para interactuar con la API desde el frontend (CRUD alumnos y cursos, y consulta de cursos activos).
 
 </details>
-
----
 
 <details>
 <summary>ENGLISH 🇬🇧</summary>
